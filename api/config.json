@@ -1,0 +1,6 @@
+{
+    "radar": {
+        "directory": "/Users/max/Library/CloudStorage/Box-Box/Radar-Data/testing_data",
+        "origins": "/Users/max/Development/radar-trajectory/radar_origins.json"
+    }
+}

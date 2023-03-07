@@ -1,0 +1,188 @@
+.layout {
+    display: flex; // Flexbox definition
+    overflow: auto; // Disable scrolling on layout
+    background: url("../../../public/drawingmat-dark.svg");
+    background-color: rgba(0, 0, 0, 0);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-size: auto;
+    background-repeat: repeat;
+    background-position: 0 0;
+    background-size: 100px;
+    &_header {
+      //background: #7F7FD5;  /* fallback for old browsers */
+      //background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+      //background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      height: var(--header-height);
+      text-align: center;
+      -moz-box-align: center;
+      align-items: center;
+      border-color: #eaecec;
+      border-bottom: 1px solid #1d2b39;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: center;
+      -moz-box-pack: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgb(255, 255, 255);
+      &_title {
+        color: var(--color1);
+        position: absolute;
+        flex: 0 0 auto;
+        font-size: 1.5em;
+        left: 25px;
+        @media only screen and (max-width: 750px){
+          position: absolute;
+          left: none;
+        }
+      }
+      &_spacer {
+        min-width: 75vw;
+        @media only screen and (max-width: 1400px) {
+          min-width: 70vw;
+        }
+        @media only screen and (max-width: 900px) {
+          min-width: 65vw;
+        }
+      }
+      &_image {
+        @media only screen and (min-width: 750px) {
+          height: 2.5em;
+          &_ns {
+            height: 5em;
+            padding-right: 10px;
+          }
+        }
+        @media only screen and (max-width: 750px) {
+          display: none;
+          &_ns {
+            display: none;
+          }
+        }
+        // position: absolute;
+        // right: 2vw;
+      }
+    }
+  
+    &_content {
+      box-sizing: border-box;
+      height: calc(100vh - var(--header-height));
+      padding: 1rem;
+      margin-top: calc(1.05 * var(--header-height));
+    }
+  }
+  
+  // Main area specific style:
+  .main {
+    flex-grow: 1;
+    &_header {
+      @media (orientation: landscape) {
+        &_title {
+          transition: left var(--secs), right var(--secs);
+  
+          &_left-closed {
+            left: var(--header-height);
+          }
+  
+          &_right-closed {
+            right: var(--header-height);
+          }
+        }
+      }
+    }
+  }
+  
+  // Style in common for both sidebars:
+  .left,
+  .right {
+    background: var(--color4);
+    width: 0;
+    border-right-width: 0;
+    transition: all var(--secs); // ease-in-out;
+    @media (orientation: landscape) {
+      &_open {
+        width: 15rem;
+        background: var(--color1);
+        box-shadow: var(--shadow);
+        color: var(--color5);
+      }
+    }
+    &_icon {
+      position: fixed;
+      z-index: 10;
+      width: var(--header-height);
+      height: var(--header-height);
+      line-height: var(--header-height);
+      font-size: var(--header-height);
+      text-align: center;
+      user-select: none;
+      cursor: pointer;
+      moz-transition: color 0.5s;
+      transition: color 0.5s;
+    }
+  
+    &_icon:hover {
+      color: var(--color2);
+    }
+  
+    &_sidebar {
+      height: var(--header-height);
+      @media (orientation: portrait) {
+        width: var(--portrait-width);
+      }
+      @media (orientation: landscape) {
+        width: calc(1vw * var(--landscape-width));
+      }
+  
+      &_header {
+        width: calc(100% - var(--header-height));
+      }
+    }
+  }
+  
+  // Left sidebar specific style:
+  .left {
+    z-index: 5;
+    background: var(--color1);
+    &_sidebar {
+      //background: var(--bg-left);
+      &_closed {
+        transform: translateX(-100%);
+      }
+  
+      // <-- Left portrait AND landscape!
+      &_header {
+        height: var(--header-height);
+      }
+      &_content {
+        padding: 0 0 0;
+        overflow: auto;
+        box-sizing: border-box;
+        height: calc(100vh - var(--header-height));
+        background-color: var(--color1);
+        box-shadow: var(--shadow);
+      }
+    }
+  }
+  
+  .arcGis {
+    //min-width: 100%;
+    //min-height: 100%;Fc
+    //z-index: -1;
+    //left: 0;
+    //right: 0;
+    position: absolute;
+    width: calc(100% - 24px * 2);
+    height: calc(100% - var(--header-height) / 2);
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box;
+  }
+  
